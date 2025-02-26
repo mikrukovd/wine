@@ -13,7 +13,7 @@ template = env.get_template('template.html')
 
 render_page = template.render(
     year=get_year(datetime.datetime.now().year - 1920),
-    drinks=get_drinks_info('wine3.xlsx')
+    drinks=get_drinks_info()
 )
 
 
