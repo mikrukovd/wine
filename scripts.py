@@ -22,7 +22,7 @@ def get_sorted_drinks(excel_file):
         keep_default_na=False
     )
 
-    sorted_drinks = []
+    sorted_drinks = defaultdict(list)
     for data in enumerate(excel_data):
 
         text = {
@@ -34,9 +34,5 @@ def get_sorted_drinks(excel_file):
             'Акция': excel_data['Акция'].to_list()[data[0]]
         }
 
-        sorted_drinks.append(text)
-
-    drinks = defaultdict(list)
-    for info in sorted_drinks:
-        drinks[info['Категория']].append(info)
-    return drinks
+        sorted_drinks[text['Категория']].append(text)
+    return sorted_drinks
