@@ -14,7 +14,7 @@ def get_year(year):
         return f'Уже {year} лет с вами'
 
 
-def get_drinks_info(excel_file):
+def get_sorted_drinks(excel_file):
     '''Возвращает словарь отсортированный по категориям напитков'''
     excel_data = pandas.read_excel(
         excel_file,
@@ -22,21 +22,21 @@ def get_drinks_info(excel_file):
         keep_default_na=False
     )
 
-    drinks_info = []
-    for i in range(len(excel_data['Название'].to_list())):
+    sorted_drinks = []
+    for data in enumerate(excel_data):
 
         text = {
-            'Название': excel_data['Название'].to_list()[i],
-            'Сорт': excel_data['Сорт'].to_list()[i],
-            'Цена': excel_data['Цена'].to_list()[i],
-            'Картинка': excel_data['Картинка'].to_list()[i],
-            'Категория': excel_data['Категория'].to_list()[i],
-            'Акция': excel_data['Акция'].to_list()[i]
+            'Название': excel_data['Название'].to_list()[data[0]],
+            'Сорт': excel_data['Сорт'].to_list()[data[0]],
+            'Цена': excel_data['Цена'].to_list()[data[0]],
+            'Картинка': excel_data['Картинка'].to_list()[data[0]],
+            'Категория': excel_data['Категория'].to_list()[data[0]],
+            'Акция': excel_data['Акция'].to_list()[data[0]]
         }
 
-        drinks_info.append(text)
+        sorted_drinks.append(text)
 
     drinks = defaultdict(list)
-    for info in drinks_info:
+    for info in sorted_drinks:
         drinks[info['Категория']].append(info)
     return drinks
