@@ -23,15 +23,15 @@ def get_sorted_drinks(excel_file):
     )
 
     sorted_drinks = defaultdict(list)
-    for data in enumerate(excel_data):
+    for i, row in enumerate(excel_data.itertuples(index=False)):
 
         text = {
-            'Название': excel_data['Название'].to_list()[data[0]],
-            'Сорт': excel_data['Сорт'].to_list()[data[0]],
-            'Цена': excel_data['Цена'].to_list()[data[0]],
-            'Картинка': excel_data['Картинка'].to_list()[data[0]],
-            'Категория': excel_data['Категория'].to_list()[data[0]],
-            'Акция': excel_data['Акция'].to_list()[data[0]]
+            'Название': row[1],
+            'Сорт': row[2],
+            'Цена': row[3],
+            'Картинка': row[4],
+            'Категория': row[0],
+            'Акция': row[5]
         }
 
         sorted_drinks[text['Категория']].append(text)
